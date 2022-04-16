@@ -5,10 +5,9 @@ public class GameProcessor {
     public GameResult processGame(Game game, String inputNum) {
         game.init();
         for(int i = 0; i < GameProperties.DIGITS_OF_TARGET_NUMBER; i++) {
-            if(isBall(game.targetNum, inputNum, i)) {
-                game.increaseBall();
+            if(isBall(game.getTargetNum(), inputNum, i)) {                game.increaseBall();
             }
-            if(isStrike(game.targetNum, inputNum, i)) {
+            if(isStrike(game.getTargetNum(), inputNum, i)) {
                 game.increaseStrike();
             }
         }
