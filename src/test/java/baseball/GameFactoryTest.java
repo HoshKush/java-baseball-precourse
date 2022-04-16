@@ -34,14 +34,14 @@ class GameFactoryTest {
     void validateEachDigitOfNumberIsUnique_ThrowException_GivenArgs(String number) {
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> gameFactory.validateEachDigitOfNumberIsUnique(number));
+                .isThrownBy(() -> Validator.validateEachDigitOfNumberIsUnique(number));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"123","456"})
     void validateEachDigitOfNumberIsUnique_WithoutException_GivenArgs(String number) {
         assertThatNoException()
-                .isThrownBy(() -> gameFactory.validateEachDigitOfNumberIsUnique(number));
+                .isThrownBy(() -> Validator.validateEachDigitOfNumberIsUnique(number));
     }
 
     @Test
