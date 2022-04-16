@@ -4,15 +4,31 @@
 
 ----------------------------------------
 ### Game[컴퓨터]
+게임의 진행 상황 저장
 
 ----------------------------------------
-1. createGame
-    + 새로운 게임을 생성한다.
-2. generateNumberStr
-    + 각 자리의 수가 유일한 주어진 자릿수의 숫자를 생성한다 (ex : 234)
-3. pollNumberInList(List<Integer> list)
-    + list안에 존재하는 임의의 숫자를 반환 및 제거.
+1. increaseBall
+   + 볼 카운트 1 증가
+2. increaseStrike
+   + 스트라이크 카운트 1 증가
+3. isNothing
+   + 낫싱 여부 확인
+      + inputNum의 어떤 숫자도 targetNum과 일치하지 않음
+4. isWin
+   + 게임 승리여부 확인
+      + inputNum과 targetNum이 동일
 
+-----------------------------------------
+### GameFactory[게임 생성]
+게임 생성 및 게임을 위한 targetNum 생성
+
+-----------------------------------------
+1. createGame
+   + 새로운 게임을 생성한다.
+2. generateNumberStr
+   + 각 자리의 수가 유일한 주어진 자릿수의 숫자를 생성한다 (ex : 234)
+3. pollNumberInList(List<Integer> list)
+   + list안에 존재하는 임의의 숫자를 반환 및 제거.
 -----------------------------------------
 ### GameProcessor[게임 진행]
 
@@ -23,14 +39,11 @@
 2. isStrike
     + 스트라이크 여부를 판단한다.
     + 입력받은 숫자가 targetNum에 존재하면서 위치가 같을 시 1 반환
-3. isNothing
-    + 낫싱 여부를 판단한다.
-    + inputNum 중 어떠한 숫도 targetNum과 일치하지 않을 시 true반환
-4. isSame
-    + inputNum과 targetNum 같을 시 true 반환
+3. processGame
+   + inputNum과 Game객체를 받아 게임을 진행하고 결과(GameResult)를 반환
 
 ------------------------------------------
-### InputValidation
+### Validator[유효성 검사]
 
 ------------------------------------------
 1. isDuplicated
