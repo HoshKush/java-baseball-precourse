@@ -1,5 +1,7 @@
 package baseball;
 
+import java.util.LinkedHashSet;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,17 +17,17 @@ class GameFactoryTest {
     GameFactory gameFactory = new GameFactory();
 
     @Test
-    void generateNumberStr_EachDigitIsUnique_NoArgs() {
+    void generateTargetNum_EachDigitIsUnique_NoArgs() {
         //when
-        String number = gameFactory.generateNumberStr();
+        String number = gameFactory.generateTargetNum();
 
         //then
         assertThat(number).containsOnlyDigits();
     }
 
     @Test
-    void generateNumberStr_LengthEqualsToValueInGameProperties() {
-        assertThat(gameFactory.generateNumberStr().length()).isEqualTo(GameProperties.LENGTH_OF_TARGET_NUMBER);
+    void generateTargetNum_LengthEqualsToValueInGameProperties() {
+        assertThat(gameFactory.generateTargetNum().length()).isEqualTo(GameProperties.LENGTH_OF_TARGET_NUMBER);
     }
 
 
@@ -78,10 +80,18 @@ class GameFactoryTest {
         int number = 400;
         numbers.add(number);
 
-        //when
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> gameFactory.pollNumberInList(numbers))
                 .withMessageMatching(String.format("number should be single digit, number : %d", number));
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 5, 6, 9})
+    void pickNum_ReturnSizeOfGivenInt(int digit) {
+        LinkedHashSet<Integer> pickedNums = gameFactory.pickNums(digit);
+        assertThat(pickedNums.size()).isEqualTo(digit);
+    }
+
+
 }

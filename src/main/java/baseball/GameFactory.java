@@ -1,31 +1,45 @@
 package baseball;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
-import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public class GameFactory {
 
     public Game createGame() {
-        String targetNum = generateNumberStr();
+        String targetNum = generateTargetNum();
+        System.out.println("targetNum : " + targetNum);
         return new Game(targetNum);
     }
 
-    public String generateNumberStr() {
-        StringBuilder number = new StringBuilder();
-        List<Integer> numbers = generateNumbers();
-        Validator.validateNumbersSize(numbers);
+    public String generateTargetNum() {
+        LinkedHashSet<Integer> pickedNums = pickNums(GameProperties.LENGTH_OF_TARGET_NUMBER);
+        String targetNum = makeNumsString(pickedNums);
+        Validator.validateInput(targetNum);
 
-        for(int i = 0; i < GameProperties.LENGTH_OF_TARGET_NUMBER; i++) {
-            number.append(pollNumberInList(numbers));
-        }
-        Validator.validateInputIsNumeric(number.toString());
-        Validator.validateEachDigitOfNumberIsUnique(number.toString());
-
-        return number.toString();
+        return targetNum;
     }
+
+    public LinkedHashSet<Integer> pickNums(int digit) {
+        LinkedHashSet<Integer> pickedNums = new LinkedHashSet<>();
+        while(pickedNums.size() < digit) {
+            pickedNums.add(Randoms.pickNumberInRange(1, 9));
+        }
+        return pickedNums;
+    }
+    
+    public String makeNumsString(LinkedHashSet<Integer> pickedNums) {
+        StringBuilder sb = new StringBuilder();
+
+        for (Integer pickedNum : pickedNums) {
+            sb.append(pickedNum);
+        }
+        
+        return sb.toString();
+    }
+
 
     public List<Integer> generateNumbers() {
         List<Integer> numbers = new ArrayList<>();
