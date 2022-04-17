@@ -2,7 +2,6 @@ package baseball;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -10,7 +9,6 @@ public class GameFactory {
 
     public Game createGame() {
         String targetNum = generateTargetNum();
-        System.out.println("targetNum : " + targetNum);
         return new Game(targetNum);
     }
 

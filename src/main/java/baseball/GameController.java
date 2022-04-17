@@ -35,8 +35,7 @@ public class GameController {
 
     public GameResult inputCommand(String input) {
         if(isNewGameCommand(input)) {
-            game = gameFactory.createGame();
-            return new GameResult(MessageEnum.PROGRESS_GAME_START);
+            return startNewGame();
         }
         if(isQuitCommand(input)) {
             return quit();
