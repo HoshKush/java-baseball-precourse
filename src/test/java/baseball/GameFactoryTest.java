@@ -25,7 +25,7 @@ class GameFactoryTest {
 
     @Test
     void generateNumberStr_LengthEqualsToValueInGameProperties() {
-        assertThat(gameFactory.generateNumberStr().length()).isEqualTo(GameProperties.DIGITS_OF_TARGET_NUMBER);
+        assertThat(gameFactory.generateNumberStr().length()).isEqualTo(GameProperties.LENGTH_OF_TARGET_NUMBER);
     }
 
 
@@ -82,6 +82,6 @@ class GameFactoryTest {
         //then
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> gameFactory.pollNumberInList(numbers))
-                .withMessageMatching(String.format("num should be single digit, num : %d", number));
+                .withMessageMatching(String.format("number should be single digit, number : %d", number));
     }
 }

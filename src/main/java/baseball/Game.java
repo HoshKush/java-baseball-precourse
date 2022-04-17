@@ -30,7 +30,7 @@ public class Game {
     }
 
     public boolean isWin() {
-        return strike == GameProperties.DIGITS_OF_TARGET_NUMBER;
+        return strike == GameProperties.LENGTH_OF_TARGET_NUMBER;
     }
 
     public String getTargetNum() {

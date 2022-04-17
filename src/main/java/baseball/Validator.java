@@ -1,14 +1,16 @@
 package baseball;
 
+import static baseball.GameProperties.*;
+
 import java.util.List;
 
 public class Validator {
 
     public static void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() < GameProperties.DIGITS_OF_TARGET_NUMBER) {
+        if (numbers.size() < LENGTH_OF_TARGET_NUMBER) {
             throw new IllegalArgumentException(String.format(
-                    "Size of numbers cannot be smaller than GameProperties.DIGITS_OF_TARGET_NUMBER(%d)",
-                    GameProperties.DIGITS_OF_TARGET_NUMBER));
+                    "Size of numbers cannot be smaller than GameProperties.LENGTH_OF_TARGET_NUMBER(%d)",
+                    LENGTH_OF_TARGET_NUMBER));
         }
     }
 
@@ -21,15 +23,33 @@ public class Validator {
     public static void validateNumberIsSingleDigit(String number) {
         if(number.length() != 1) {
             throw new IllegalArgumentException(
-                    String.format("num should be single digit, number : %s", number)
+                    String.format("number should be single digit, number : %s", number)
             );
         }
     }
 
-    public static void validateStringIsNumeric(String str) {
-        if(!str.matches("[1-9]*")) {
+    public static void validateInputLength(String input) {
+        if(input.length() != LENGTH_OF_TARGET_NUMBER) {
             throw new IllegalArgumentException(
-                    String.format("Given string is not numeric, str : %s", str)
+                    String.format("Length of input differ from LENGTH_OF_TARGET_NUMBER," 
+                            + " length of input : %d, LENGTH_OF_TARGET_NUMBER : %d",
+                            input.length(), LENGTH_OF_TARGET_NUMBER)
+            );
+        }
+    }
+    
+    public static void validateInputIsNumeric(String input) {
+        if(!input.matches("[0-9]*")) {
+            throw new IllegalArgumentException(
+                    String.format("input value is not numeric, input : %s", input)
+            );
+        }
+    }
+
+    public static void validateInputContainsZero(String input) {
+        if(input.contains("0")) {
+            throw new IllegalArgumentException(
+                    String.format("input value contains 0, input : %s", input)
             );
         }
     }
@@ -47,5 +67,12 @@ public class Validator {
                     String.format("There are more than two '%s' in '%s'", stdNum, number)
             );
         }
+    }
+
+    public static void validateInput(String input) {
+        validateInputIsNumeric(input);
+        validateInputContainsZero(input);
+        validateEachDigitOfNumberIsUnique(input);
+        validateInputLength(input);
     }
 }

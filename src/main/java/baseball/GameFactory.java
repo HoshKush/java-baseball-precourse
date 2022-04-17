@@ -16,13 +16,12 @@ public class GameFactory {
     public String generateNumberStr() {
         StringBuilder number = new StringBuilder();
         List<Integer> numbers = generateNumbers();
-
         Validator.validateNumbersSize(numbers);
 
-        for(int i = 0; i < GameProperties.DIGITS_OF_TARGET_NUMBER; i++) {
+        for(int i = 0; i < GameProperties.LENGTH_OF_TARGET_NUMBER; i++) {
             number.append(pollNumberInList(numbers));
         }
-        Validator.validateStringIsNumeric(number.toString());
+        Validator.validateInputIsNumeric(number.toString());
         Validator.validateEachDigitOfNumberIsUnique(number.toString());
 
         return number.toString();

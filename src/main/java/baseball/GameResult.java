@@ -6,10 +6,19 @@ public class GameResult {
     private int ball;
     private int strike;
 
+    public GameResult(){
+
+    }
+
+    public GameResult(MessageEnum messageEnum) {
+        code = messageEnum.getCode();
+        message = messageEnum.getMessage();
+    }
+
     public static GameResult create(MessageEnum resultEnum, int ball, int strike) {
         GameResult gameResult = new GameResult();
         gameResult.setCode(resultEnum.getCode());
-        gameResult.setMessage(resultEnum.getMessage(ball, strike));
+        gameResult.setMessage(MessageGenerator.generateMessage(resultEnum, ball, strike));
         gameResult.setBall(ball);
         gameResult.setStrike(strike);
 
