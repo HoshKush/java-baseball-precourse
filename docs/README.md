@@ -25,7 +25,7 @@
 -----------------------------------------
 1. createGame
    + 새로운 게임을 생성한다.
-2. generateNumberStr
+2. generateTargetNum
    + 각 자리의 수가 유일한 주어진 자릿수의 숫자를 생성한다 (ex : 234)
 3. pollNumberInList(List<Integer> list)
    + list안에 존재하는 임의의 숫자를 반환 및 제거.
