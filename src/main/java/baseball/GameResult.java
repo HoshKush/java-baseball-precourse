@@ -6,9 +6,7 @@ public class GameResult {
     private int ball;
     private int strike;
 
-    public GameResult(){
-
-    }
+    public GameResult(){}
 
     public GameResult(MessageEnum messageEnum) {
         code = messageEnum.getCode();
