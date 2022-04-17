@@ -56,5 +56,5 @@
 ------------------------------------------
 1. validateEachDigitOfNumberIsUnique
     + 주어진 문자열에 2번이상 사용된 문자 여부 확인
-2. validateStringIsNumeric
+2. validateInputIsNumeric
     + 주어진 문자열이 숫자인지 확인
